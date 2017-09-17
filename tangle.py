@@ -136,7 +136,7 @@ class tangle:
         # Socket to talk to server
         context = zmq.Context()
         socket = context.socket(zmq.SUB)
-        socket.connect("tcp://analytics.iotaledger.net:5556")
+        socket.connect("tcp://analytics.iotaledger.net:%s" % self.subscribe)
 
         # Subscribe to topic
         topicfilter = self.topic
