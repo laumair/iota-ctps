@@ -16,8 +16,6 @@ MARK_AS_START = 0
 
 
 class tangle:
-
-
     def __init__(self,config_map_global):
 
         #filesystem
@@ -70,8 +68,6 @@ class tangle:
         self.api_url = config_map_global['--url']
         self.slack_key = config_map_global['--slack_key']
 
-
-
     def add_tx_to_tangle(self, tx):
 
         self.graph.add_node(tx.hash, tx=tx, confirmed=False, trunk=tx.trunk_transaction_hash)
@@ -96,7 +92,6 @@ class tangle:
             if self.latest_milestone_index < index:
                 self.latest_milestone_index = index
             self.milestone_count +=1
-
 
     def incremental_read(self):
 
@@ -141,7 +136,7 @@ class tangle:
         # Socket to talk to server
         context = zmq.Context()
         socket = context.socket(zmq.SUB)
-        socket.connect("tcp://localhost:%s" % self.subscribe)
+        socket.connect("tcp://analytics.iotaledger.net:5556")
 
         # Subscribe to topic
         topicfilter = self.topic

@@ -18,7 +18,7 @@ def API_slack(request,slack_token):
 
 TIMEOUT = 7
 def API(request,auth,url):
-
+    print request, auth, url
     stringified = json.dumps(request)
     headers = {'content-type': 'application/json', 'Authorization': auth}
 

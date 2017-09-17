@@ -29,7 +29,6 @@ from tangle import tangle
 
 def main(config_map_global):
     t = tangle(config_map_global)
-
     if config_map_global["--export_folder"]:
         while True:
             t.incremental_read()

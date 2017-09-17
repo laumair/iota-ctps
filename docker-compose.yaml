@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  web:
+    restart: always
+    build: .
+    entrypoint: /iota-ctps/scripts/ctps_server.sh
+    ports:
+      - "9080:9080"
+    volumes:
+      - .:/iota-ctps

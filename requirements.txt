@@ -1,0 +1,14 @@
+celery==4.0.2
+eventlet
+flake8
+flask==0.11.1
+flask_script
+flask-socketio
+gunicorn
+redis==2.10.5
+networkx
+terminaltables
+pyota
+slackclient
+docopt
+zmq

@@ -65,8 +65,13 @@ class analytics:
                 self.calc_confirmation_time()
         except:
             pass
+        try:
+            self.dump_to_db()
+        except:
+            pass
 
-
+    def dump_to_db(self):
+        pass
 
     def add_stats(self):
         num_txs = num_ctxs = tps = ctps = width = avg_c_t = alltime_avg_tps = alltime_avg_ctps = c_rate = 0
@@ -210,14 +215,13 @@ class analytics:
             'avgConfTime': data.avgCTime[index],
             'latestMilestone': self.tangle.latest_milestone_index
         }
+
+        res = api.API(json_str, self.tangle.auth_key, self.tangle.api_url)
+        print res
+
         #write feed to file
         with open('feed.out', 'w+') as f:
             f.write(json.dumps(json_str))
-
-        #send json to api endpoint
-        if self.tangle.auth_key and self.tangle.latest_milestone_index > self.tangle.milestone_to_broadcast_after:
-            res = api.API(json_str, self.tangle.auth_key, self.tangle.api_url)
-            print res
 
         t = time.strftime("%a, %d %b %Y %H:%M:%S", time.gmtime(self.tangle.prev_timestamp / 1000 / 1000))
         slack_string = ''
@@ -250,6 +254,7 @@ class analytics:
 
         for (c, d) in enumerate(self.data.all):
             full_table_data.append(d)
+            print c, d
             if c > self.tangle.prev_print - self.tangle.lines_to_show:
                 self.tangle.prev_print = c
                 short_table_data.append(d)
